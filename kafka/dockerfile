@@ -1,0 +1,15 @@
+FROM nvidia/cuda:12.8.0-cudnn-devel-oraclelinux8
+
+WORKDIR /app
+
+# Install image dependencies (for Python and whisper)
+
+RUN dnf install -y python3.12 python3.12-pip python3.12-setuptools python3.12-pip-wheel gcc libffi-devel python3-devel openssl-devel
+
+# Install dependencies here to be cached
+COPY requirements.txt requirements.txt
+RUN python3.12 -m pip install -r requirements.txt
+    
+COPY whisper-kafka-dask.py /app
+
+CMD ["python3.12", "whisper-kafka-dask.py"]

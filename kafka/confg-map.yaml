@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: whisper-kafka-reader-configmap
+data:
+  INPUT_BUCKET_NAME: <input_bucket_name>
+  OUTPUT_BUCKET_NAME: <output_bucket_name>
+  REGION: <region>
+  KAFKA_BOOTSTRAP_SERVERS: <kafka_bootstrap_servers>
+  KAFKA_TOPIC: <kafka_topic>
+  KAFKA_GROUP_ID: <kafka_group_id>
+  KAFKA_USERNAME: <username>
+  SECRET_OCID: <secret_ocid>

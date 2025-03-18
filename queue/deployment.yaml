@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whisper-queue-reader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: whisper-queue-reader
+  template:
+    metadata:
+      labels:
+        app: whisper-queue-reader
+    spec:
+      containers:
+        - name: whisper-queue-reader
+          image: [Sua Imagem Docker]
+          envFrom:
+            - configMapRef:
+                name: whisper-queue-reader-configmap
+          resources:
+            limits:
+              nvidia.com/gpu: 1

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whisper-kafka-reader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: whisper-kafka-reader
+  template:
+    metadata:
+      labels:
+        app: whisper-kafka-reader
+    spec:
+      containers:
+        - name: whisper-kafka-reader
+          image: [Sua Imagem Docker]
+          envFrom:
+            - configMapRef:
+                name: whisper-kafka-reader-configmap
+          resources:
+            limits:
+              nvidia.com/gpu: 1
