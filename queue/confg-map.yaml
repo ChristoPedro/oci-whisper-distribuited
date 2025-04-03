@@ -8,3 +8,4 @@ data:
   REGION: <region>
   SERVICE_ENDPOINT: <service_endpoint>
   QUEUE_ID: <queue_id>
+  MAX_PARALLEL: <max_parallel>

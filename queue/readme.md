@@ -49,6 +49,7 @@ OUTPUT_BUCKET_NAME: nome do bucket de saída
 REGION: região OCI
 SERVICE_ENDPOINT: endpoint da OCI Queue
 QUEUE_ID: id da queue
+MAX_PARALLEL: Máximo de arquivos processado em paralelo (min:1)
 ```
 
 ## Deploy

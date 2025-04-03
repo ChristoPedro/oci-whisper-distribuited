@@ -1,6 +1,6 @@
-# Whisper Dask - Processamento de Áudio Distribuído
+# Whisper - Processamento de Áudio Distribuído
 
-Este projeto implementa um sistema distribuído de transcrição de áudio usando Whisper, Dask e serviços Oracle Cloud Infrastructure (OCI). Você pode escolher entre duas implementações:
+Este projeto é um estudo de uma implementação um sistema distribuído de transcrição de áudio usando Whisper e serviços Oracle Cloud Infrastructure (OCI). Você pode escolher entre duas implementações:
 
 - **Implementação Kafka**: Utiliza OCI Streaming (Kafka) para mensageria
 - **Implementação Queue**: Utiliza OCI Queue para mensageria
@@ -16,8 +16,8 @@ O sistema possui dois modelos de implementação possíveis:
 
 Ambas implementações utilizam:
 
-- Dask para processamento distribuído
 - Faster Whisper para transcrição
+- Modelo large-v3-turbo
 - OCI Object Storage para armazenamento
 - GPU NVIDIA para aceleração
 
@@ -42,11 +42,11 @@ O sistema:
 2. Baixa os arquivos do OCI Object Storage
 3. Processa usando Whisper com aceleração GPU
 4. Salva as transcrições no bucket de saída
-5. Utiliza Dask para processamento paralelo
+5. Utiliza Torch Cuda Stream para processamento paralelo
 
 ## Características
 
-- Processamento distribuído com Dask
+- Processamento distribuído
 - Aceleração GPU com CUDA
 - Alta performance com faster-whisper
 - Integração nativa com serviços OCI
@@ -63,3 +63,18 @@ O sistema utiliza logging detalhado para monitorar:
 - Tempo de transcrição
 - Tempo de upload
 - Tempo total de processamento
+
+## Parametros
+
+- Utilizando arquivos de áudio com 11 minutos de duração
+- Nó utilizado VM.GPU.A10.1
+- Modelo: large-v3
+
+## Resultados
+
+- Para um arquivo sem paralelimo
+    . média de 9,988s
+- Para 2 arquivos em paralelo
+    . média de 15s
+- Para 3 arquivos em paralelo
+    . média de 18.104s

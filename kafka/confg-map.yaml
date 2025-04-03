@@ -11,3 +11,5 @@ data:
   KAFKA_GROUP_ID: <kafka_group_id>
   KAFKA_USERNAME: <username>
   SECRET_OCID: <secret_ocid>
+  MAX_PARALLEL: <max_parallel>
+  

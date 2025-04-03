@@ -6,10 +6,15 @@ WORKDIR /app
 
 RUN dnf install -y python3.12 python3.12-pip python3.12-setuptools python3.12-pip-wheel gcc libffi-devel python3-devel openssl-devel
 
-# Install dependencies here to be cached
 COPY requirements.txt requirements.txt
-RUN python3.12 -m pip install -r requirements.txt
-    
-COPY whisper-queue-dask.py /app
 
-CMD ["python3.12", "whisper-queue-dask.py"]
+# Torch for cuda 12.8
+RUN python3.12 -m pip install --pre torch==2.8.0.dev20250319  --index-url https://download.pytorch.org/whl/nightly/cu128
+
+RUN python3.12 -m pip install -r requirements.txt
+
+ENV LD_LIBRARY_PATH=/usr/local/lib/python3.12/site-packages/cusparselt/lib:$LD_LIBRARY_PATH
+
+COPY whisper-queue.py /app
+
+CMD ["python3.12", "whisper-queue.py"]
